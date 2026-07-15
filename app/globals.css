@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme("colors.cream.50");
+  color: theme("colors.charcoal.900");
+}
+
+@layer components {
+  .input-field {
+    @apply rounded-xl border border-clay-100 bg-white px-4 py-2.5 font-body text-[15px] text-charcoal-900 outline-none transition-colors placeholder:text-charcoal-700/40 focus:border-clay-500;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
