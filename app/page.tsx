@@ -1,27 +1,93 @@
 import { Navbar } from "@/components/Navbar";
+import { BrandHeader } from "@/components/BrandHeader";
 import { Hero } from "@/components/Hero";
-import { MenuSection } from "@/components/MenuSection";
+import { CategoryGrid } from "@/components/CategoryGrid";
+import { PremiumMenu } from "@/components/PremiumMenu";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CheckoutModal } from "@/components/CheckoutModal";
-import { menuItems, CATEGORIES } from "@/data/menuItems";
 
-// This page is a Server Component by default. If you switch
-// menuItems to a real API call (see /data/menuItems.ts), fetch it
-// here with `await getMenuItems()` and pass the result down —
-// MenuSection can stay a client component for the tab interactivity.
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cream-50">
+    <main className="min-h-screen bg-chaar-cream">
       <Navbar />
+
+      <BrandHeader />
+
       <Hero />
-      <MenuSection items={menuItems} categories={CATEGORIES} />
+
+      {/* Luxury Transition */}
+      <section className="relative h-44 overflow-hidden bg-chaar-cream">
+        {/* Warm gold glow */}
+        <div
+          className="
+            absolute
+            inset-x-0
+            top-0
+            h-24
+            bg-[radial-gradient(circle_at_top,rgba(184,146,60,0.18),transparent_70%)]
+          "
+        />
+
+        {/* Cream → Charcoal gradient */}
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-b
+            from-chaar-cream
+            via-[#E8DDC8]
+            to-[#181512]
+          "
+        />
+
+        {/* Decorative gold line */}
+        <div className="absolute bottom-10 left-1/2 h-px w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
+      </section>
+
+      <CategoryGrid />
+
+      <PremiumMenu />
+
       <Footer />
 
-      {/* Overlay components: render conditionally based on cart state,
-          mounted once at the page root so they can appear over anything. */}
       <CartDrawer />
+
       <CheckoutModal />
     </main>
   );
 }
+
+// import { Navbar } from "@/components/Navbar";
+// import { BrandHeader } from "@/components/BrandHeader";
+// import { Hero } from "@/components/Hero";
+// import { CategoryGrid } from "@/components/CategoryGrid";
+// import { Footer } from "@/components/Footer";
+// import { CartDrawer } from "@/components/CartDrawer";
+// import { CheckoutModal } from "@/components/CheckoutModal";
+
+// // This page is a Server Component by default.
+// // If menu data later comes from an API,
+// // fetch it here and pass it down to client components.
+
+// export default function Home() {
+//   return (
+//     <main className="min-h-screen bg-chaar-cream">
+//       <Navbar />
+
+//       <BrandHeader />
+
+//       <Hero />
+
+//       <CategoryGrid />
+
+//       <Footer />
+
+//       {/* Global overlay components */}
+//       <CartDrawer />
+//       <CheckoutModal />
+//     </main>
+//   );
+// }
+
+

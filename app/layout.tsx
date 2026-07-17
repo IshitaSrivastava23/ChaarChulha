@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 
-const fraunces = Fraunces({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["500", "600", "700"],
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
 });
 
-const workSans = Work_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-work-sans",
+  variable: "--font-inter",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -21,13 +21,19 @@ export const metadata: Metadata = {
     "Pure, home-cooked tiffins, breakfast, lunch, and dinner delivered fresh across Pune. Order online or via WhatsApp.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${workSans.variable}`}>
-      <body className="font-body">
-        {/* CartProvider wraps the whole app so any component (navbar,
-            menu cards, drawer, checkout modal) can read/update the cart
-            via the useCart() hook — no prop drilling needed. */}
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${inter.variable}`}
+    >
+      <body className="font-body bg-chaar-cream text-chaar-black antialiased">
+        {/* CartProvider wraps the whole app so any component
+            can access the shopping cart without prop drilling. */}
         <CartProvider>{children}</CartProvider>
       </body>
     </html>
