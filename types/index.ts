@@ -3,7 +3,7 @@
 // schema once you swap out the mock data in /data/menuItems.ts
 // ─────────────────────────────────────────────────────────────
 
-export type MenuCategory = "Snacks" | "Sandwiches, Burgers & Wraps" | "Paratha Gali" | "Chaar Chulha Sangam" | "Main Course" | "Thalis" | "Tiffins";
+export type MenuCategory = "Starters" | "Sandwiches, Burgers & Wraps" | "Paratha Gali" | "Chaar Chulha Sangam" | "Main Course" | "Thalis" | "Tiffins";
 
 export interface MenuItem {
   id: string;

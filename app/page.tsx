@@ -57,37 +57,3 @@ export default function Home() {
     </main>
   );
 }
-
-// import { Navbar } from "@/components/Navbar";
-// import { BrandHeader } from "@/components/BrandHeader";
-// import { Hero } from "@/components/Hero";
-// import { CategoryGrid } from "@/components/CategoryGrid";
-// import { Footer } from "@/components/Footer";
-// import { CartDrawer } from "@/components/CartDrawer";
-// import { CheckoutModal } from "@/components/CheckoutModal";
-
-// // This page is a Server Component by default.
-// // If menu data later comes from an API,
-// // fetch it here and pass it down to client components.
-
-// export default function Home() {
-//   return (
-//     <main className="min-h-screen bg-chaar-cream">
-//       <Navbar />
-
-//       <BrandHeader />
-
-//       <Hero />
-
-//       <CategoryGrid />
-
-//       <Footer />
-
-//       {/* Global overlay components */}
-//       <CartDrawer />
-//       <CheckoutModal />
-//     </main>
-//   );
-// }
-
-

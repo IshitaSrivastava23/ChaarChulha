@@ -12,7 +12,13 @@ export function MenuCard({ item }: { item: MenuItem }) {
   const quantity = line?.quantity ?? 0;
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-shadow hover:shadow-warm">
+    <div className="group flex flex-col overflow-hidden rounded-3xl
+                    bg-[#1C1A18]
+                    border border-chaar-gold/20
+                    transition-all duration-500
+                    hover:-translate-y-2
+                    hover:border-chaar-gold
+                    hover:shadow-goldLg">
       <div className="relative h-44 w-full overflow-hidden bg-cream-100">
         {/* IMAGE SOURCE: item.imageURL — replace mock URLs in /data/menuItems.ts */}
         <Image
@@ -29,9 +35,9 @@ export function MenuCard({ item }: { item: MenuItem }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col p-6">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-display text-lg font-semibold leading-tight text-charcoal-900">{item.name}</h3>
+          <h3 className="font-display text-2xl text-chaar-cream">{item.name}</h3>
           {item.isPure && (
             <span title="Pure ingredients" className="mt-1 shrink-0 text-sage-600">
               <Leaf size={16} />
@@ -39,17 +45,17 @@ export function MenuCard({ item }: { item: MenuItem }) {
           )}
         </div>
 
-        <p className="mt-1.5 line-clamp-2 font-body text-sm leading-relaxed text-charcoal-700">
+        <p className="mt-2 text-gray-400 leading-7">
           {item.description}
         </p>
 
         <div className="mt-4 flex items-center justify-between">
-          <span className="font-display text-lg font-semibold text-clay-600">{formatINR(item.price)}</span>
+          <span className="font-display text-2xl text-chaar-gold">{formatINR(item.price)}</span>
 
           {quantity === 0 ? (
             <button
               onClick={() => addItem(item)}
-              className="rounded-full bg-charcoal-900 px-4 py-2 font-body text-sm font-semibold text-cream-50 transition-transform hover:scale-105 active:scale-95"
+              className="rounded-full bg-chaar-gold text-black hover:scale-105 px-4 py-2 font-body text-sm font-semibold text-cream-50 transition-transform hover:scale-105 active:scale-95"
             >
               Add to Cart
             </button>

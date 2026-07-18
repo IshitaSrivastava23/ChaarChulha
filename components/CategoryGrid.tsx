@@ -12,37 +12,36 @@ import {
 const categories = [
   {
     title: "Starters",
-    href: "/menu/starters",
     icon: Soup,
     desc: "Snacks, Maggi, Fries & More",
   },
   {
     title: "Sandwiches, Burgers & Wraps",
-    href: "/menu/sandwiches-burgers-wraps",
     icon: Sandwich,
     desc: "Grilled Sandwiches & Rolls",
   },
   {
     title: "Paratha Gali",
-    href: "/menu/paratha-gali",
     icon: Pizza,
     desc: "Stuffed North Indian Parathas",
   },
   {
     title: "Main Course",
-    href: "/menu/main-course",
     icon: CookingPot,
     desc: "Fresh Home-style Meals",
   },
   {
     title: "Chaar Chulha Sangam",
-    href: "/menu/chaar-chulha-sangam",
     icon: UtensilsCrossed,
     desc: "Combos & Special Meals",
   },
   {
-    title: "Tiffin Subscription",
-    href: "/menu/tiffin-subscription",
+    title: "Thalis",
+    icon: UtensilsCrossed,
+    desc: "Traditional Indian Thalis",
+  },
+  {
+    title: "Tiffins",
     icon: BriefcaseBusiness,
     desc: "Monthly Meal Plans",
   },
@@ -75,7 +74,7 @@ export function CategoryGrid() {
           {categories.map((category) => (
             <Link
               key={category.title}
-              href={category.href}
+              href={`/menu/${encodeURIComponent(category.title)}`}
               className="group relative overflow-hidden rounded-luxury border border-chaar-gold/40 bg-marble p-8 shadow-card transition-all duration-500 ease-luxury hover:-translate-y-3 hover:border-chaar-gold hover:shadow-goldLg"
             >
               {/* Decorative Outer Border */}

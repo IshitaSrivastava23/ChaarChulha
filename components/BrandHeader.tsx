@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function BrandHeader() {
   return (
-    <section className="relative overflow-hidden bg-chaar-cream pt-24 pb-14">
+    <section className="relative overflow-hidden bg-chaar-cream pt-32 pb-20">
 
       {/* Large Ambient Glow */}
       <div
@@ -42,26 +42,31 @@ export function BrandHeader() {
             className="
               absolute
               inset-0
-              scale-[1.45]
+              scale-[1.8]
               rounded-full
-              bg-gold-400/20
-              blur-[80px]
+              bg-gold-400/25
+              blur-[120px]
             "
           />
 
           <Image
-            src="/LogoEmblem.png"
-            alt="Chaar Chulha"
-            width={260}
-            height={260}
-            priority
-            className="
-              relative
-              w-60
-              md:w-64
-              lg:w-[260px]
-              drop-shadow-[0_25px_45px_rgba(184,146,60,0.35)]
-            "
+              src="/LogoEmblem.png"
+              alt="Chaar Chulha"
+              width={420}
+              height={420}
+              priority
+              className="
+                relative
+                w-80
+                md:w-[24rem]
+                lg:w-[30rem]
+                xl:w-[34rem]
+                h-auto
+                drop-shadow-[0_35px_70px_rgba(184,146,60,0.45)]
+                transition-transform
+                duration-700
+                hover:scale-105
+              "
           />
 
         </div>
@@ -70,7 +75,7 @@ export function BrandHeader() {
 
         <h1
           className="
-            mt-14
+            mt-8
             font-display
             text-6xl
             md:text-7xl
