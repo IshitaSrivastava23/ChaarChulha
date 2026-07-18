@@ -1,9 +1,22 @@
 import { notFound } from "next/navigation";
 import { menuItems, CATEGORIES } from "@/data/menuItems";
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+// Required for GitHub Pages static export
+export async function generateStaticParams() {
+  return CATEGORIES.map((category) => ({
+    category,
+  }));
+}
+
+export default function CategoryPage({
+  params,
+}: {
+  params: { category: string };
+}) {
   const category = decodeURIComponent(params.category);
-  const isValidCategory = CATEGORIES.includes(category as (typeof CATEGORIES)[number]);
+  const isValidCategory = CATEGORIES.includes(
+    category as (typeof CATEGORIES)[number]
+  );
 
   if (!isValidCategory) {
     notFound();
