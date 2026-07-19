@@ -1,4 +1,3 @@
-console.log("MENU ITEMS FILE LOADED");
 import { MenuItem } from "@/types";
 
 export const menuItems: MenuItem[] = [
@@ -399,5 +398,4 @@ export const menuItems: MenuItem[] = [
 
 ];
 
-export const CATEGORIES: MenuItem["category"][] = ["Starters", "Sandwiches, Burgers & Wraps", "Paratha Gali", "Chaar Chulha Sangam", "Main Course", "Thalis", "Tiffins"];
-console.log(menuItems.length);
+export const CATEGORIES: MenuItem["category"][] = ["Starters", "Sandwiches, Burgers & Wraps", "Paratha Gali", "Chaar Chulha Sangam", "Main Course", "Thalis", "Tiffins"];

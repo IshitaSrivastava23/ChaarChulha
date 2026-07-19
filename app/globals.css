@@ -4,25 +4,37 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: theme("colors.cream.50");
-  color: theme("colors.charcoal.900");
+  /* Use explicit hex — never rely on token resolution in base styles */
+  background-color: #F9F6F0;
+  color: #2C2623;
 }
 
 @layer components {
+  /* Input field — explicit values, no token dependency */
   .input-field {
-    @apply rounded-xl border border-clay-100 bg-white px-4 py-2.5 font-body text-[15px] text-charcoal-900 outline-none transition-colors placeholder:text-charcoal-700/40 focus:border-clay-500;
+    @apply w-full rounded-xl border px-4 py-3 font-body text-[15px] outline-none transition-colors;
+    border-color: #E8E2D5;
+    background-color: #FFFFFF;
+    color: #2C2623;
+  }
+  .input-field::placeholder {
+    color: #877872;
+    opacity: 1;
+  }
+  .input-field:focus {
+    border-color: #C85A32;
+    box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.1);
   }
 }
 
 /* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -23,11 +23,12 @@ export function CategoryTabs({ categories, active, onChange }: CategoryTabsProps
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(category)}
-            className={`shrink-0 rounded-full border px-5 py-2.5 font-body text-sm font-semibold transition-colors ${
+            className="shrink-0 rounded-full px-5 py-2.5 font-body text-sm font-semibold transition-colors"
+            style={
               isActive
-                ? "border-clay-600 bg-clay-600 text-cream-50"
-                : "border-clay-100 bg-white text-charcoal-700 hover:border-clay-400"
-            }`}
+                ? { backgroundColor: "#C85A32", color: "#FFFFFF", border: "1px solid #C85A32" }
+                : { backgroundColor: "#FFFFFF", color: "#5E524D", border: "1px solid #E8E2D5" }
+            }
           >
             {category}
           </button>

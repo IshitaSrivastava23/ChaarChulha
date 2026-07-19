@@ -12,69 +12,74 @@ export function MenuCard({ item }: { item: MenuItem }) {
   const quantity = line?.quantity ?? 0;
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-3xl
-                    bg-[#1C1A18]
-                    border border-chaar-gold/20
-                    transition-all duration-500
-                    hover:-translate-y-2
-                    hover:border-chaar-gold
-                    hover:shadow-goldLg">
-      <div className="relative h-44 w-full overflow-hidden bg-cream-100">
-        {/* IMAGE SOURCE: item.imageURL — replace mock URLs in /data/menuItems.ts */}
+    <div
+      className="group flex flex-col overflow-hidden rounded-2xl border border-chaar-gold/20 bg-chaar-charcoal transition-all duration-300 hover:-translate-y-1 hover:border-chaar-gold/50 hover:shadow-gold"
+    >
+      {/* Food image — larger height for more visual impact */}
+      <div className="relative h-52 w-full overflow-hidden bg-chaar-marble">
         <Image
           src={item.imageURL}
           alt={item.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
         {item.isBestseller && (
-          <span className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-saffron-400 px-2.5 py-1 font-body text-[11px] font-bold uppercase tracking-wide text-charcoal-900">
+          <span className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-saffron-400 px-2.5 py-1 font-body text-[11px] font-bold uppercase tracking-wide text-chaar-black">
             <Flame size={11} /> Bestseller
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      {/* Card body */}
+      <div className="flex flex-1 flex-col p-5">
+        {/* Name + veg indicator */}
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-display text-2xl text-chaar-cream">{item.name}</h3>
+          <h3 className="font-display text-[1.35rem] leading-snug text-chaar-cream">
+            {item.name}
+          </h3>
           {item.isPure && (
-            <span title="Pure ingredients" className="mt-1 shrink-0 text-sage-600">
-              <Leaf size={16} />
+            <span title="Pure vegetarian" className="mt-0.5 shrink-0 text-emerald-500">
+              <Leaf size={15} />
             </span>
           )}
         </div>
 
-        <p className="mt-2 text-gray-400 leading-7">
+        {/* Description */}
+        <p className="mt-2 flex-1 font-body text-sm leading-6 text-chaar-cream/50">
           {item.description}
         </p>
 
+        {/* Price + Add control */}
         <div className="mt-4 flex items-center justify-between">
-          <span className="font-display text-2xl text-chaar-gold">{formatINR(item.price)}</span>
+          <span className="font-display text-xl text-chaar-gold">
+            {formatINR(item.price)}
+          </span>
 
           {quantity === 0 ? (
             <button
               onClick={() => addItem(item)}
-              className="rounded-full bg-chaar-gold text-black hover:scale-105 px-4 py-2 font-body text-sm font-semibold text-cream-50 transition-transform hover:scale-105 active:scale-95"
+              className="rounded-full border border-chaar-gold/40 px-4 py-1.5 font-body text-sm font-semibold text-chaar-gold transition-all duration-200 hover:border-chaar-gold hover:bg-chaar-gold/10 active:scale-95"
             >
-              Add to Cart
+              Add
             </button>
           ) : (
-            <div className="flex items-center gap-3 rounded-full bg-clay-50 px-1.5 py-1.5">
+            // Quantity stepper — larger touch targets via padding, same visual size
+            <div className="flex items-center gap-3">
               <button
                 onClick={() => decrement(item.id)}
                 aria-label={`Remove one ${item.name}`}
-                className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-clay-600 shadow-sm active:scale-90"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-chaar-gold/30 text-chaar-gold transition-colors hover:border-chaar-gold hover:bg-chaar-gold/10 active:scale-90"
               >
                 <Minus size={14} />
               </button>
-              <span className="min-w-[1.2rem] text-center font-body text-sm font-bold text-charcoal-900">
+              <span className="min-w-[1.5rem] text-center font-body text-sm font-bold text-chaar-cream">
                 {quantity}
               </span>
               <button
                 onClick={() => increment(item.id)}
                 aria-label={`Add one more ${item.name}`}
-                className="flex h-7 w-7 items-center justify-center rounded-full bg-clay-600 text-cream-50 shadow-sm active:scale-90"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-chaar-gold text-chaar-black transition-all hover:opacity-90 active:scale-90"
               >
                 <Plus size={14} />
               </button>

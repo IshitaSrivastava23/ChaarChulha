@@ -26,25 +26,39 @@ export function Navbar() {
   return (
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled ? "bg-cream-50/95 shadow-card backdrop-blur-sm" : "bg-cream-50/70 backdrop-blur-sm"
+        scrolled
+          ? "bg-white/95 shadow-sm backdrop-blur-sm border-b border-brand-gold-muted"
+          : "bg-white/80 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 md:px-8">
-        {/* Brand mark: the uploaded logo is cut for a dark backdrop,
-            so it sits on a small charcoal chip rather than directly
-            on the cream navbar. Swap /public/logo.jpeg for a
-            transparent-background PNG export later for a cleaner fit. */}
+        {/* Logo mark + text logo, adjacent — matches the original HTML design */}
         <a href="#top" className="flex items-center gap-2">
-          <Image src="/logo/logo-transparent.png" alt="Chaar Chulha Logo Emblem" width={48} height={48} className="h-12 w-auto" priority />
-          <Image src="/logo/chaar_chulha_text_full.png" alt="Chaar Chulha Text Logo" width={160} height={44} className="h-8 w-auto -translate-y-[1px]" priority />
+          <Image
+            src="/logo/logo-transparent.png"
+            alt="Chaar Chulha Logo Emblem"
+            width={48}
+            height={48}
+            className="h-12 w-auto"
+            priority
+          />
+          <Image
+            src="/logo/chaar_chulha_text_full.png"
+            alt="Chaar Chulha Text Logo"
+            width={160}
+            height={44}
+            className="h-8 w-auto -translate-y-[1px]"
+            priority
+          />
         </a>
 
+        {/* Desktop Nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-body text-[15px] font-medium text-charcoal-700 transition-colors hover:text-clay-600"
+              className="relative font-body text-[14px] font-medium text-brand-brown-700 transition-colors hover:text-brand-brown-900 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-brand-terracotta after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
@@ -52,38 +66,41 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* Cart button */}
           <button
             onClick={openCart}
             aria-label="Open cart"
-            className="relative flex items-center gap-2 rounded-full bg-charcoal-900 px-4 py-2.5 text-cream-50 transition-transform hover:scale-[1.03] active:scale-95"
+            className="relative flex items-center gap-2 rounded-full bg-brand-brown-900 px-4 py-2.5 font-body text-sm font-medium text-brand-cream transition-all duration-200 hover:bg-brand-terracotta active:scale-95"
           >
-            <ShoppingBag className="h-4.5 w-4.5" size={18} />
-            <span className="hidden text-sm font-medium sm:inline">Cart</span>
+            <ShoppingBag size={16} />
+            <span className="hidden sm:inline">Cart</span>
             {itemCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-saffron-400 px-1 text-xs font-bold text-charcoal-900">
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-terracotta px-1 font-body text-xs font-bold text-white ring-2 ring-white">
                 {itemCount}
               </span>
             )}
           </button>
 
+          {/* Mobile menu toggle */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="rounded-full p-2.5 text-charcoal-900 md:hidden"
+            className="rounded-full p-2.5 text-brand-brown-900 transition-colors hover:bg-brand-cream md:hidden"
           >
             {mobileOpen ? <X size={22} /> : <MenuIcon size={22} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Nav */}
       {mobileOpen && (
-        <nav className="flex flex-col gap-1 border-t border-clay-100 bg-cream-50 px-5 py-3 md:hidden">
+        <nav className="flex flex-col gap-1 border-t border-brand-gold-muted bg-white px-5 py-3 md:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="rounded-lg px-2 py-2.5 font-body text-[15px] font-medium text-charcoal-700 hover:bg-cream-100"
+              className="rounded-lg px-3 py-2.5 font-body text-[15px] font-medium text-brand-brown-700 transition-colors hover:bg-brand-cream hover:text-brand-brown-900"
             >
               {link.label}
             </a>
