@@ -4,19 +4,19 @@ import { useState } from "react";
 import { X, Loader2, CreditCard, MessageCircle, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/lib/pricing";
-import { handlePaymentSubmit } from "@/lib/payment";
+import { createOrder } from "@/lib/payment";
 import { openWhatsAppCheckout } from "@/lib/whatsapp";
-import { CustomerDetails } from "@/types";
-import { UpiPaymentView } from "./UpiPaymentView";
-import { PaymentSuccessView } from "./PaymentSuccessView";
+import { CustomerDetails, Order } from "@/types";
+import { PaymentProviderView } from "./PaymentProviderView";
+import { OrderSubmittedView } from "./OrderSubmittedView";
 
-type SubmitState = "idle" | "paying" | "upi_payment" | "success" | "error";
+type SubmitState = "idle" | "creating_order" | "pending_payment" | "payment_submitted" | "error";
 
 export function CheckoutModal() {
   const { lines, totals, isCheckoutOpen, closeCheckout, clearCart } = useCart();
   const [form, setForm] = useState<CustomerDetails>({ name: "", phone: "", address: "", notes: "" });
   const [paymentState, setPaymentState] = useState<SubmitState>("idle");
-  const [orderId, setOrderId] = useState<string | null>(null);
+  const [activeOrder, setActiveOrder] = useState<Order | null>(null);
 
   if (!isCheckoutOpen) return null;
 
@@ -33,16 +33,16 @@ export function CheckoutModal() {
 
   async function onPayOnline() {
     if (!isFormValid) return;
-    setPaymentState("paying");
+    setPaymentState("creating_order");
     try {
-      const result = await handlePaymentSubmit(
+      const result = await createOrder(
         { ...form, phone: normalizedPhone },
         lines,
         totals
       );
-      if (result.success) {
-        setOrderId(result.orderId ?? null);
-        setPaymentState("upi_payment");
+      if (result.success && result.order) {
+        setActiveOrder(result.order);
+        setPaymentState("pending_payment");
       } else {
         setPaymentState("error");
       }
@@ -61,14 +61,14 @@ export function CheckoutModal() {
     closeCheckout();
   }
 
-  function handleUpiSuccess() {
-    setPaymentState("success");
+  function handlePaymentSubmitted() {
+    setPaymentState("payment_submitted");
     clearCart();
   }
 
   function handleClose() {
     setPaymentState("idle");
-    setOrderId(null);
+    setActiveOrder(null);
     closeCheckout();
   }
 
@@ -101,9 +101,9 @@ export function CheckoutModal() {
             style={{ borderBottom: "1px solid #E8E2D5" }}
           >
             <h2 className="font-display text-xl" style={{ color: "#2C2623" }}>
-              {paymentState === "success" && "Order Confirmed"}
-              {paymentState === "upi_payment" && "Payment"}
-              {(paymentState === "idle" || paymentState === "paying" || paymentState === "error") && "Checkout"}
+              {paymentState === "payment_submitted" && "Order Request"}
+              {paymentState === "pending_payment" && "Payment"}
+              {(paymentState === "idle" || paymentState === "creating_order" || paymentState === "error") && "Checkout"}
             </h2>
             <button
               onClick={handleClose}
@@ -120,16 +120,15 @@ export function CheckoutModal() {
           {/* ── Scrollable content ── */}
           <div className="overflow-y-auto" style={{ backgroundColor: "#FFFFFF" }}>
 
-            {/* ── Success state ── */}
-            {paymentState === "success" && orderId ? (
-              <PaymentSuccessView orderId={orderId} onClose={handleClose} />
-            ) : paymentState === "upi_payment" && orderId ? (
-              <UpiPaymentView
-                merchantName="Chaar Chulha"
-                upiId="chaarchulha@okicici"
-                amount={totals.grandTotal}
-                orderId={orderId}
-                onSuccess={handleUpiSuccess}
+            {/* ── Dynamic States ── */}
+            {paymentState === "payment_submitted" && activeOrder ? (
+              <OrderSubmittedView order={activeOrder} onClose={handleClose} />
+            ) : paymentState === "pending_payment" && activeOrder ? (
+              <PaymentProviderView
+                merchantName="Priyanka Mohit"
+                upiId="priyamohit43@okicici"
+                order={activeOrder}
+                onSuccess={handlePaymentSubmitted}
                 onCancel={() => setPaymentState("idle")}
               />
             ) : (
@@ -237,13 +236,13 @@ export function CheckoutModal() {
                 <div className="mt-5 flex flex-col gap-3 pb-2">
                   <button
                     onClick={onPayOnline}
-                    disabled={!isFormValid || paymentState === "paying"}
+                    disabled={!isFormValid || paymentState === "creating_order"}
                     className="flex items-center justify-center gap-2 rounded-full py-3.5 font-body text-[15px] font-semibold text-white transition-all duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
                     style={{ backgroundColor: "#C85A32" }}
                     onMouseEnter={e => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = "#AF4B26"; }}
                     onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#C85A32"; }}
                   >
-                    {paymentState === "paying" ? (
+                    {paymentState === "creating_order" ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
                         Processing…

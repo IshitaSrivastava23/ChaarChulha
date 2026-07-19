@@ -34,3 +34,14 @@ export interface OrderTotals {
   deliveryFee: number;
   grandTotal: number;
 }
+
+export type OrderStatus = "PENDING_PAYMENT" | "PAYMENT_SUBMITTED" | "PAYMENT_VERIFIED" | "PREPARING" | "DELIVERED";
+
+export interface Order {
+  id: string;
+  customer: CustomerDetails;
+  lines: CartLine[];
+  totals: OrderTotals;
+  status: OrderStatus;
+  createdAt: number;
+}
