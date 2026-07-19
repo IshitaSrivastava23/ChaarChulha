@@ -43,6 +43,11 @@ export function Hero() {
             <span style={{ color: "#C85A32" }}> Across Pune</span>
           </h2>
 
+          {/* Tagline */}
+          <p className="mt-5 font-display text-2xl italic tracking-wide" style={{ color: "#C85A32" }}>
+            "Ghar jaisa swaad, har order ke saath"
+          </p>
+
           {/* Thin rule */}
           <div
             className="mt-6 h-px w-20"

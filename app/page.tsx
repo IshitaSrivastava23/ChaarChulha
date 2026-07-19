@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { MenuSection } from "@/components/MenuSection";
+import { CateringSection } from "@/components/CateringSection";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CheckoutModal } from "@/components/CheckoutModal";
@@ -15,6 +16,8 @@ export default function Home() {
 
       {/* Single unified menu section — tabs + items in one clean flow */}
       <MenuSection items={menuItems} categories={CATEGORIES} />
+
+      <CateringSection />
 
       <Footer />
 
