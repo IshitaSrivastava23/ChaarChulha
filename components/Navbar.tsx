@@ -34,13 +34,9 @@ export function Navbar() {
             so it sits on a small charcoal chip rather than directly
             on the cream navbar. Swap /public/logo.jpeg for a
             transparent-background PNG export later for a cleaner fit. */}
-        <a href="#top" className="flex items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-charcoal-900 p-1 shadow-card">
-            <Image src="/logo.jpeg" alt="Chaar Chulha logo" width={40} height={40} className="h-full w-full rounded-full object-cover" priority />
-          </span>
-          <span className="font-display text-xl font-semibold tracking-tight text-charcoal-900">
-            Chaar Chulha
-          </span>
+        <a href="#top" className="flex items-center gap-2">
+          <Image src="/logo/logo-transparent.png" alt="Chaar Chulha Logo Emblem" width={48} height={48} className="h-12 w-auto" priority />
+          <Image src="/logo/chaar_chulha_text_full.png" alt="Chaar Chulha Text Logo" width={160} height={44} className="h-8 w-auto -translate-y-[1px]" priority />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
