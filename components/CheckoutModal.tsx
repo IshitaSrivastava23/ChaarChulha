@@ -7,8 +7,10 @@ import { formatINR } from "@/lib/pricing";
 import { handlePaymentSubmit } from "@/lib/payment";
 import { openWhatsAppCheckout } from "@/lib/whatsapp";
 import { CustomerDetails } from "@/types";
+import { UpiPaymentView } from "./UpiPaymentView";
+import { PaymentSuccessView } from "./PaymentSuccessView";
 
-type SubmitState = "idle" | "paying" | "success" | "error";
+type SubmitState = "idle" | "paying" | "upi_payment" | "success" | "error";
 
 export function CheckoutModal() {
   const { lines, totals, isCheckoutOpen, closeCheckout, clearCart } = useCart();
@@ -40,8 +42,7 @@ export function CheckoutModal() {
       );
       if (result.success) {
         setOrderId(result.orderId ?? null);
-        setPaymentState("success");
-        clearCart();
+        setPaymentState("upi_payment");
       } else {
         setPaymentState("error");
       }
@@ -58,6 +59,11 @@ export function CheckoutModal() {
     // Only clear after user sees confirmation
     clearCart();
     closeCheckout();
+  }
+
+  function handleUpiSuccess() {
+    setPaymentState("success");
+    clearCart();
   }
 
   function handleClose() {
@@ -95,7 +101,9 @@ export function CheckoutModal() {
             style={{ borderBottom: "1px solid #E8E2D5" }}
           >
             <h2 className="font-display text-xl" style={{ color: "#2C2623" }}>
-              {paymentState === "success" ? "Order Confirmed" : "Checkout"}
+              {paymentState === "success" && "Order Confirmed"}
+              {paymentState === "upi_payment" && "Payment"}
+              {(paymentState === "idle" || paymentState === "paying" || paymentState === "error") && "Checkout"}
             </h2>
             <button
               onClick={handleClose}
@@ -113,31 +121,17 @@ export function CheckoutModal() {
           <div className="overflow-y-auto" style={{ backgroundColor: "#FFFFFF" }}>
 
             {/* ── Success state ── */}
-            {paymentState === "success" ? (
-              <div className="flex flex-col items-center gap-4 px-8 py-14 text-center">
-                <div
-                  className="flex h-16 w-16 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "#F0F4EC" }}
-                >
-                  <CheckCircle2 size={32} style={{ color: "#657049" }} />
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl" style={{ color: "#2C2623" }}>
-                    Your order is placed!
-                  </h3>
-                  <p className="mt-2 font-body text-sm leading-6" style={{ color: "#5E524D" }}>
-                    {orderId ? `Order #${orderId}. ` : ""}
-                    We'll reach out shortly to confirm your delivery details.
-                  </p>
-                </div>
-                <button
-                  onClick={handleClose}
-                  className="mt-2 rounded-full px-8 py-3 font-body text-sm font-semibold text-white transition-colors"
-                  style={{ backgroundColor: "#2C2623" }}
-                >
-                  Done
-                </button>
-              </div>
+            {paymentState === "success" && orderId ? (
+              <PaymentSuccessView orderId={orderId} onClose={handleClose} />
+            ) : paymentState === "upi_payment" && orderId ? (
+              <UpiPaymentView
+                merchantName="Chaar Chulha"
+                upiId="chaarchulha@okicici"
+                amount={totals.grandTotal}
+                orderId={orderId}
+                onSuccess={handleUpiSuccess}
+                onCancel={() => setPaymentState("idle")}
+              />
             ) : (
               <div className="px-6 py-5" style={{ backgroundColor: "#FFFFFF" }}>
 
