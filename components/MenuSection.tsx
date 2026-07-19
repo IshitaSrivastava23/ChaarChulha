@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { MenuItem, MenuCategory } from "@/types";
 import { CategoryTabs } from "./CategoryTabs";
 import { MenuCard } from "./MenuCard";
@@ -23,36 +24,53 @@ export function MenuSection({ items, categories }: MenuSectionProps) {
   return (
     <section id="menu" className="py-16 md:py-24" style={{ backgroundColor: "#F5EAD9" }}>
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        {/* Heading */}
-        <div className="mx-auto max-w-xl text-center">
-          <p
-            className="font-body text-xs font-semibold uppercase tracking-[0.2em]"
-            style={{ color: "#C85A32" }}
-          >
-            Curated Daily
-          </p>
-          <h2
-            className="mt-2 font-display text-3xl sm:text-4xl"
-            style={{ color: "#2C2623" }}
-          >
-            Our Menu
-          </h2>
-          <p className="mt-3 font-body text-[15px]" style={{ color: "#5E524D" }}>
-            Home-style dishes cooked fresh every morning — pick a category to see what's ready today.
-          </p>
-        </div>
+        {/* ── Section header: heading + Food Choice animation side-by-side ── */}
+        <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:gap-12">
 
-        {/* Divider */}
-        <div className="my-8 flex items-center justify-center gap-2" aria-hidden="true">
-          <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#F0C96C" }} />
-          <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#C85A32" }} />
-          <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#F0C96C" }} />
-          <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#C85A32" }} />
+          {/* Left — heading text */}
+          <div className="flex-1 text-center md:text-left">
+            <p
+              className="font-body text-xs font-semibold uppercase tracking-[0.2em]"
+              style={{ color: "#C85A32" }}
+            >
+              Curated Daily
+            </p>
+            <h2
+              className="mt-2 font-display text-3xl sm:text-4xl"
+              style={{ color: "#2C2623" }}
+            >
+              Our Menu
+            </h2>
+            <p className="mt-3 font-body text-[15px]" style={{ color: "#5E524D" }}>
+              Home-style dishes cooked fresh every morning — pick a category to see what's ready today.
+            </p>
+
+            {/* Divider dots */}
+            <div className="mt-6 flex items-center justify-center gap-2 md:justify-start" aria-hidden="true">
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#F0C96C" }} />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#C85A32" }} />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#F0C96C" }} />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#C85A32" }} />
+            </div>
+          </div>
+
+          {/* Right — Food Choice animation (girl thinking about food) */}
+          {/* Purposefully kept small so it doesn't dominate; adds warmth and personality */}
+          <div className="w-56 shrink-0 md:w-64 lg:w-72">
+            <Image
+              src="/animations/Food Choice svg.svg"
+              alt="Thinking about what to eat today"
+              width={400}
+              height={400}
+              className="h-auto w-full"
+              unoptimized
+            />
+          </div>
         </div>
 
         {/* Sticky tabs */}
         <div
-          className="sticky top-[72px] z-30 -mx-5 flex justify-center px-5 py-3 md:-mx-8 md:px-8"
+          className="sticky top-[72px] z-30 -mx-5 mt-8 flex justify-center px-5 py-3 md:-mx-8 md:px-8"
           style={{ backgroundColor: "#F5EAD9" }}
           id="tiffins"
         >
