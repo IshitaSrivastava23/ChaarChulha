@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowRight, Leaf } from "lucide-react";
-import { ChulhaMark } from "./ChulhaMark";
+import { Leaf } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
@@ -16,54 +15,27 @@ export function Hero() {
         {/* ── LEFT COPY ── */}
         <div className="animate-slideUp">
 
-          {/* Eyebrow badge */}
-          <div
-            className="mb-7 inline-flex items-center gap-2.5 rounded-full px-4 py-2"
-            style={{ border: "1px solid #E8E2D5", backgroundColor: "#FFFFFF" }}
-          >
-            <ChulhaMark className="h-4 w-4" animate />
-            <span
-              className="font-body text-[11px] font-semibold uppercase"
-              style={{ letterSpacing: "0.4em", color: "#C8A45D" }}
-            >
-              Four Chulhas · One Tradition
-            </span>
-          </div>
-
           {/* Main heading */}
           <h2
-            className="mt-4 font-display text-5xl leading-[1.05] sm:text-6xl md:text-[4rem]"
+            className="font-display text-5xl leading-[1.1] sm:text-6xl md:text-[4rem]"
             style={{ color: "#2C2623" }}
           >
-            Authentic
+            Home-Style Meals,
             <br />
-            Home-Style Meals
-            <br />
-            Delivered Fresh
-            <span style={{ color: "#C85A32" }}> Across Pune</span>
+            <span style={{ color: "#C85A32" }}>Delivered Fresh.</span>
           </h2>
 
           {/* Tagline */}
-          <p className="mt-5 font-display text-2xl italic tracking-wide" style={{ color: "#C85A32" }}>
+          <p className="mt-4 font-display text-[1.35rem] italic tracking-wide" style={{ color: "#C8A45D" }}>
             "Ghar jaisa swaad, har order ke saath"
           </p>
 
-          {/* Thin rule */}
-          <div
-            className="mt-6 h-px w-20"
-            style={{ backgroundColor: "#C8A45D", opacity: 0.5 }}
-          />
-
           {/* Description */}
           <p
-            className="mt-6 max-w-xl font-body text-[16px] leading-8"
+            className="mt-6 max-w-lg font-body text-[16px] leading-relaxed"
             style={{ color: "#5E524D" }}
           >
-            Every meal begins with carefully selected ingredients, traditional
-            family recipes, and the warmth of an Indian kitchen. Whether
-            you're ordering lunch for today, dinner for your family, or a
-            monthly tiffin — every dish is freshly prepared and thoughtfully
-            delivered across Pune.
+            Comforting, everyday food made with carefully selected ingredients. Order for today or subscribe to a monthly tiffin.
           </p>
 
           {/* CTAs */}
@@ -75,11 +47,7 @@ export function Hero() {
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#AF4B26")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#C85A32")}
             >
-              Explore Menu
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
+              Order Now
             </a>
 
             <a
@@ -99,23 +67,25 @@ export function Hero() {
                 e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
-              View Tiffin Plans
+              Subscribe to Tiffins
             </a>
           </div>
 
           {/* Trust signals */}
           <div
-            className="mt-7 flex flex-wrap gap-x-7 gap-y-2.5 font-body text-sm font-medium"
-            style={{ color: "#5E524D" }}
+            className="mt-8 flex flex-wrap gap-x-7 gap-y-3 font-body text-[13px] font-medium"
+            style={{ color: "#877872" }}
           >
-            {["Freshly Prepared Daily", "Traditional Recipes", "Delivered Across Pune"].map(
-              (label) => (
-                <div key={label} className="flex items-center gap-2">
-                  <Leaf size={13} style={{ color: "#657049" }} className="shrink-0" />
-                  {label}
-                </div>
-              )
-            )}
+            {[
+              "No minimum order",
+              "Pause tiffins anytime",
+              "Free delivery over ₹499",
+            ].map((label) => (
+              <div key={label} className="flex items-center gap-2">
+                <Leaf size={14} style={{ color: "#C8A45D" }} className="shrink-0" />
+                {label}
+              </div>
+            ))}
           </div>
         </div>
 
