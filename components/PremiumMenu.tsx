@@ -28,9 +28,14 @@ const sections = [
     subtitle: "Complete meals crafted for a satisfying experience.",
   },
   {
-    id: "tiffins",
-    title: "Tiffin Subscription",
-    subtitle: "Nutritious daily meal plans delivered to your doorstep.",
+    id: "thalis",
+    title: "Thalis",
+    subtitle: "Traditional Indian thalis crafted for a complete dining experience.",
+  },
+  {
+  id: "tiffins",
+  title: "Tiffins",
+  subtitle: "Nutritious daily meal plans delivered to your doorstep.",
   },
 ];
 
@@ -69,23 +74,27 @@ export function PremiumMenu() {
 
           return (
             <section
-              key={section.id}
-              id={section.id}
-              className="mb-24 scroll-mt-28"
+                id={section.title}
+                key={section.id}
+                className="scroll-mt-32 py-24"
             >
-              <div className="mb-10">
+              <div className="mb-20 text-center">
 
-                <p className="text-sm uppercase tracking-[0.35em] text-chaar-gold">
-                  {section.title}
+                <div className="mx-auto mb-8 h-px w-40 bg-gradient-to-r from-transparent via-[#B8923C] to-transparent" />
+
+                <p className="uppercase tracking-[0.55em] text-sm text-chaar-gold">
+                  Signature Collection
                 </p>
 
-                <h3 className="mt-3 font-display text-4xl text-chaar-cream">
+                <h3 className="mt-5 font-display text-5xl md:text-6xl text-chaar-cream">
                   {section.title}
                 </h3>
 
-                <p className="mt-4 max-w-2xl text-gray-400">
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-400">
                   {section.subtitle}
                 </p>
+
+                <div className="mx-auto mt-8 h-px w-40 bg-gradient-to-r from-transparent via-[#B8923C] to-transparent" />
 
               </div>
 
@@ -93,6 +102,9 @@ export function PremiumMenu() {
                 {items.map((item) => (
                   <MenuCard key={item.id} item={item} />
                 ))}
+              </div>
+              <div className="mt-24 mb-4 flex justify-center">
+                <div className="h-px w-56 bg-gradient-to-r from-transparent via-chaar-gold/50 to-transparent" />
               </div>
             </section>
           );
