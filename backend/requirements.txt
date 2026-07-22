@@ -6,3 +6,4 @@ alembic
 pydantic-settings
 pydantic
 psycopg2-binary
+httpx

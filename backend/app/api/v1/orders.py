@@ -1,22 +1,31 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, BackgroundTasks
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
 from app.db.database import get_db
 from app.schemas.order import OrderCreate, OrderResponse
 from app.services.order import OrderService
+from app.services.notification import TelegramNotificationService
 
 router = APIRouter()
 
 def get_order_service(db: AsyncSession = Depends(get_db)) -> OrderService:
     return OrderService(db)
 
+def get_notification_service() -> TelegramNotificationService:
+    return TelegramNotificationService()
+
 @router.post("/", response_model=OrderResponse, status_code=201)
 async def create_order(
     order_in: OrderCreate,
-    service: OrderService = Depends(get_order_service)
+    background_tasks: BackgroundTasks,
+    service: OrderService = Depends(get_order_service),
+    notification_service: TelegramNotificationService = Depends(get_notification_service)
 ):
-    return await service.create_order(order_in)
+    order = await service.create_order(order_in)
+    # Schedule the notification asynchronously after DB commit is successful
+    background_tasks.add_task(notification_service.send_new_order_alert, OrderResponse.model_validate(order))
+    return order
 
 @router.get("/{order_id}", response_model=OrderResponse, status_code=200)
 async def get_order(
