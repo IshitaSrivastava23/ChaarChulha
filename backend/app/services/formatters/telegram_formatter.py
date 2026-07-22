@@ -25,8 +25,20 @@ class TelegramFormatter:
 
     @staticmethod
     def _build_text(order: OrderResponse) -> str:
-        # Time formatting
-        time_str = order.created_at.strftime("%I:%M %p") if order.created_at else "Now"
+        # Time formatting (IST with Date)
+        if order.created_at:
+            try:
+                from zoneinfo import ZoneInfo
+                from datetime import timezone
+                # Ensure it's an aware datetime in UTC before converting
+                dt_utc = order.created_at.replace(tzinfo=timezone.utc) if order.created_at.tzinfo is None else order.created_at
+                dt_ist = dt_utc.astimezone(ZoneInfo("Asia/Kolkata"))
+                time_str = dt_ist.strftime("%d %b %Y, %I:%M %p")
+            except Exception:
+                # Fallback just in case
+                time_str = order.created_at.strftime("%d %b %Y, %I:%M %p")
+        else:
+            time_str = "Now"
 
         # Items formatting
         items_list = "\n".join([f"{item.quantity} × {item.name}" for item in order.items])
