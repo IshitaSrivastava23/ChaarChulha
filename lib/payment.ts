@@ -17,21 +17,52 @@ export async function createOrder(
   lines: CartLine[],
   totals: OrderTotals
 ): Promise<OrderCreationResult> {
-  console.log("[createOrder] Simulating order creation for:", { customer, lines, totals });
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
-  await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate network latency
-
-  const newOrder: Order = {
-    id: `CC-${Date.now().toString().slice(-8)}`,
-    customer,
-    lines,
-    totals,
-    status: "PENDING_PAYMENT",
-    createdAt: Date.now(),
+  const payload = {
+    customer_name: customer.name,
+    phone: customer.phone,
+    address: customer.address,
+    instructions: customer.notes || null,
+    items: lines.map(line => ({
+      item_id: line.menuItem.id,
+      name: line.menuItem.name,
+      quantity: line.quantity,
+      price: line.menuItem.price
+    })),
+    subtotal: totals.subtotal,
+    delivery_charge: totals.deliveryFee,
+    total_amount: totals.grandTotal
   };
 
-  return {
-    success: true,
-    order: newOrder,
-  };
+  try {
+    const response = await fetch(`${apiUrl}/orders/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      console.error("API Error:", errorData);
+      return { success: false, errorMessage: "Failed to create order. Please try again." };
+    }
+
+    const data = await response.json();
+    
+    // Map the backend response back to the frontend Order type
+    const newOrder: Order = {
+      id: `CC${data.id}`, // Format the backend's integer ID
+      customer,
+      lines,
+      totals,
+      status: "PENDING_PAYMENT",
+      createdAt: new Date(data.created_at).getTime(),
+    };
+
+    return { success: true, order: newOrder };
+  } catch (error) {
+    console.error("Network Error:", error);
+    return { success: false, errorMessage: "Network error occurred. Please check your connection." };
+  }
 }
