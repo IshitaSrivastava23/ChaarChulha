@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import { MenuItem, MenuCategory } from "@/types";
 import { CategoryTabs } from "./CategoryTabs";
@@ -13,6 +13,24 @@ interface MenuSectionProps {
 
 export function MenuSection({ items, categories }: MenuSectionProps) {
   const [activeCategory, setActiveCategory] = useState<MenuCategory>(categories[0]);
+
+  // If the user navigates via a hash link (e.g., /#tiffins from Navbar), switch the active tab
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#tiffins") {
+        setActiveCategory("Tiffins" as MenuCategory);
+      } else if (window.location.hash === "#menu") {
+        // Optional: Reset to first category when clicking "Menu"
+        setActiveCategory(categories[0]);
+      }
+    };
+
+    // Check on initial load
+    handleHashChange();
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [categories]);
 
   const filteredItems = useMemo(
     () => items.filter((item) => item.category === activeCategory),
