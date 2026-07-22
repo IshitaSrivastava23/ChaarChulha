@@ -67,17 +67,14 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
       <div className="mt-4 flex w-full flex-col items-start text-left gap-3 rounded-2xl p-4 sm:p-5" style={{ backgroundColor: "#FAFAFA", border: "1px solid #E8E2D5" }}>
         <h4 className="font-display text-sm font-semibold" style={{ color: "#2C2623" }}>What happens next?</h4>
         <ul className="flex flex-col gap-2 font-body text-xs sm:text-sm" style={{ color: "#5E524D" }}>
+          
           <li className="flex items-start gap-2">
             <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
-            <span>We'll verify your payment.</span>
+            <span>You'll receive a confirmation message once your order is accepted.</span>
           </li>
           <li className="flex items-start gap-2">
             <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
             <span>We'll start preparing your meal.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
-            <span>You'll receive a confirmation message once your order is accepted and being prepared.</span>
           </li>
           <li className="flex items-start gap-2">
             <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
@@ -102,7 +99,7 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
           className="flex w-full items-center justify-center gap-2 rounded-full py-3.5 font-body text-[15px] font-semibold transition-all active:scale-[0.98]"
           style={{ border: "1px solid #E8E2D5", color: "#2C2623" }}
         >
-          💬 Message Us on WhatsApp
+          💬 Connect on WhatsApp
         </a>
       </div>
 

@@ -72,7 +72,16 @@ class TelegramFormatter:
         clean_phone_for_url = urllib.parse.quote(phone.replace("+", ""))
 
         # WhatsApp Message
-        wa_text = urllib.parse.quote(f"Hi {order.customer_name}, we have received your order (CC{order.id}) from Chaar Chulha! It is being prepared.")
+        wa_message = (
+            f"Hi {order.customer_name},\n\n"
+            f"Thank you for choosing ChaarChulha! ✨\n\n"
+            f"We have received your order (CC{order.id}) and started preparing your meal with care. "
+            f"We will update you as soon as it's ready for delivery.\n\n"
+            f"If you have any special requests or instructions, please let us know here. "
+            f"We are more than happy to accommodate them!\n\n"
+            f"Warm regards,\nChaarChulha 💖"
+        )
+        wa_text = urllib.parse.quote(wa_message)
         wa_url = f"https://wa.me/{clean_phone_for_url}?text={wa_text}"
         
         # Phone call
