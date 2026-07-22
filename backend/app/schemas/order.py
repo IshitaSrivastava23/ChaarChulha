@@ -11,14 +11,14 @@ class OrderItemSchema(BaseModel):
     price: Decimal = Field(ge=0)
 
 class OrderBase(BaseModel):
-    customer_name: str
-    phone: str
-    address: str
+    customer_name: str = Field(min_length=2)
+    phone: str = Field(min_length=10, max_length=15, pattern=r"^\+?[1-9]\d{9,14}$")
+    address: str = Field(min_length=5)
     instructions: Optional[str] = None
-    items: List[OrderItemSchema]
+    items: List[OrderItemSchema] = Field(min_length=1)
     subtotal: Decimal = Field(ge=0)
     delivery_charge: Decimal = Field(ge=0)
-    total_amount: Decimal = Field(ge=0)
+    total_amount: Decimal = Field(gt=0)
 
 class OrderCreate(OrderBase):
     pass

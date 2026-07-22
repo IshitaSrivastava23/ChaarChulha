@@ -25,10 +25,10 @@ export async function createOrder(
     address: customer.address,
     instructions: customer.notes || null,
     items: lines.map(line => ({
-      item_id: line.menuItem.id,
-      name: line.menuItem.name,
+      item_id: line.item.id,
+      name: line.item.name,
       quantity: line.quantity,
-      price: line.menuItem.price
+      price: line.item.price
     })),
     subtotal: totals.subtotal,
     delivery_charge: totals.deliveryFee,

@@ -11,7 +11,8 @@ class OrderRepository:
 
     async def create(self, order_in: OrderCreate) -> Order:
         # Convert Pydantic items list to dicts for JSONB storage
-        items_data = [item.model_dump() for item in order_in.items]
+        # Use mode='json' so that Decimal fields (like price) are properly serialized
+        items_data = [item.model_dump(mode="json") for item in order_in.items]
         
         db_order = Order(
             customer_name=order_in.customer_name,

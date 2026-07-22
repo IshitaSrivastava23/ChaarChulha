@@ -24,7 +24,7 @@ async def create_order(
 ):
     order = await service.create_order(order_in)
     # Schedule the notification asynchronously after DB commit is successful
-    background_tasks.add_task(notification_service.send_new_order_alert, OrderResponse.model_validate(order))
+    background_tasks.add_task(notification_service.send_order_created, OrderResponse.model_validate(order))
     return order
 
 @router.get("/{order_id}", response_model=OrderResponse, status_code=200)
