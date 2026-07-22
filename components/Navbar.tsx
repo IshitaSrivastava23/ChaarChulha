@@ -3,19 +3,18 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
+import { ShoppingBag, Menu as MenuIcon, X, Clock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = [
   { label: "Menu", href: "/#menu" },
   { label: "Tiffins", href: "/#tiffins" },
-  { label: "Recent Orders", href: "/recent-orders" },
   { label: "Our Story", href: "/#story" },
   { label: "Contact", href: "/#footer" },
 ];
 
 export function Navbar() {
-  const { itemCount, openCart } = useCart();
+  const { itemCount, openCart, openHistory } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -68,6 +67,16 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* History button */}
+          <button
+            onClick={openHistory}
+            aria-label="Recent Orders"
+            className="relative flex items-center justify-center rounded-full bg-brand-cream/50 p-2.5 font-body text-brand-brown-900 transition-all duration-200 hover:bg-brand-terracotta hover:text-white active:scale-95"
+            title="Recent Orders"
+          >
+            <Clock size={20} />
+          </button>
+
           {/* Cart button */}
           <button
             onClick={openCart}

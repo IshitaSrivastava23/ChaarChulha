@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, RotateCw } from "lucide-react";
 import { HistoricalOrder } from "@/lib/order-history";
 import { useCart } from "@/context/CartContext";
-import { useRouter } from "next/navigation";
 
 interface OrderHistoryCardProps {
   order: HistoricalOrder;
@@ -12,8 +11,7 @@ interface OrderHistoryCardProps {
 
 export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const { clearCart, addItem, setIsCartOpen } = useCart();
-  const router = useRouter();
+  const { clearCart, addItem, openCart, closeHistory } = useCart();
 
   const handleReorder = () => {
     clearCart();
@@ -27,9 +25,9 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
       }
     });
 
-    // Notify user visually that cart was updated. We can open the cart or just navigate.
-    setIsCartOpen(true);
-    router.push("/#menu");
+    // Notify user visually that cart was updated by sliding it open.
+    closeHistory();
+    openCart();
   };
 
   const dateStr = new Date(order.placedAt).toLocaleDateString("en-IN", {

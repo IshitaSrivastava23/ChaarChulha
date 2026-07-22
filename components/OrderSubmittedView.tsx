@@ -90,7 +90,7 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
           className="flex w-full items-center justify-center rounded-full py-3.5 font-body text-[15px] font-semibold text-white transition-all active:scale-[0.98]"
           style={{ backgroundColor: "#C85A32" }}
         >
-          Continue Browsing
+          Browse Menu
         </button>
         <a
           href={whatsappUrl}
