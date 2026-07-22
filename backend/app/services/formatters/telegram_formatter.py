@@ -37,27 +37,25 @@ class TelegramFormatter:
             notes_section = f"{TelegramFormatter.SEPARATOR}\n\n📝 NOTES\n\n{order.instructions}\n\n"
 
         text = (
-            f"{TelegramFormatter.SEPARATOR}\n"
             f"🍽️ NEW ORDER\n\n"
             f"🆔 Order: CC{order.id}\n"
-            f"🕒 {time_str}\n\n"
-            f"{TelegramFormatter.SEPARATOR}\n\n"
+            f"🕒 {time_str}\n"
+            f"{TelegramFormatter.SEPARATOR}\n"
             f"👤 CUSTOMER\n\n"
             f"{order.customer_name}\n"
-            f"{order.phone}\n\n"
-            f"{TelegramFormatter.SEPARATOR}\n\n"
+            f"{order.phone}\n"
+            f"{TelegramFormatter.SEPARATOR}\n"
             f"🛒 ITEMS\n\n"
-            f"{items_list}\n\n"
-            f"{TelegramFormatter.SEPARATOR}\n\n"
+            f"{items_list}\n"
+            f"{TelegramFormatter.SEPARATOR}\n"
             f"💰 BILL\n\n"
-            f"Subtotal         ₹{order.subtotal}\n"
-            f"Delivery Charge  ₹{order.delivery_charge}\n"
-            f"Grand Total      ₹{order.total_amount}\n\n"
-            f"{TelegramFormatter.SEPARATOR}\n\n"
+            f"Subtotal:         ₹{order.subtotal}\n"
+            f"Delivery:         ₹{order.delivery_charge}\n"
+            f"Grand Total:      ₹{order.total_amount}\n"
+            f"{TelegramFormatter.SEPARATOR}\n"
             f"📍 DELIVERY ADDRESS\n\n"
-            f"{order.address}\n\n"
+            f"{order.address}\n"
             f"{notes_section}"
-            f"{TelegramFormatter.SEPARATOR}"
         )
         return text
 
@@ -87,8 +85,7 @@ class TelegramFormatter:
         return {
             "inline_keyboard": [
                 [
-                    {"text": "📞 Call Customer", "url": tel_url},
-                    {"text": "💬 WhatsApp", "url": wa_url}
+                    {"text": "💬 WhatsApp Customer", "url": wa_url}
                 ],
                 [
                     {"text": "📍 Open Maps", "url": maps_url}
