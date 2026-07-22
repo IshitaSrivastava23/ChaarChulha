@@ -15,6 +15,7 @@ interface CartState {
   lines: CartLine[];
   isCartOpen: boolean;
   isCheckoutOpen: boolean;
+  isHistoryOpen: boolean;
 }
 
 type CartAction =
@@ -26,12 +27,15 @@ type CartAction =
   | { type: "OPEN_CART" }
   | { type: "CLOSE_CART" }
   | { type: "OPEN_CHECKOUT" }
-  | { type: "CLOSE_CHECKOUT" };
+  | { type: "CLOSE_CHECKOUT" }
+  | { type: "OPEN_HISTORY" }
+  | { type: "CLOSE_HISTORY" };
 
 const initialState: CartState = {
   lines: [],
   isCartOpen: false,
   isCheckoutOpen: false,
+  isHistoryOpen: false,
 };
 
 function cartReducer(state: CartState, action: CartAction): CartState {
@@ -59,13 +63,17 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case "CLEAR_CART":
       return { ...state, lines: [] };
     case "OPEN_CART":
-      return { ...state, isCartOpen: true };
+      return { ...state, isCartOpen: true, isHistoryOpen: false };
     case "CLOSE_CART":
       return { ...state, isCartOpen: false };
     case "OPEN_CHECKOUT":
-      return { ...state, isCartOpen: false, isCheckoutOpen: true };
+      return { ...state, isCartOpen: false, isCheckoutOpen: true, isHistoryOpen: false };
     case "CLOSE_CHECKOUT":
       return { ...state, isCheckoutOpen: false };
+    case "OPEN_HISTORY":
+      return { ...state, isHistoryOpen: true, isCartOpen: false };
+    case "CLOSE_HISTORY":
+      return { ...state, isHistoryOpen: false };
     default:
       return state;
   }
@@ -75,6 +83,7 @@ interface CartContextValue {
   lines: CartLine[];
   isCartOpen: boolean;
   isCheckoutOpen: boolean;
+  isHistoryOpen: boolean;
   itemCount: number;
   totals: OrderTotals;
   addItem: (item: MenuItem) => void;
@@ -86,6 +95,8 @@ interface CartContextValue {
   closeCart: () => void;
   openCheckout: () => void;
   closeCheckout: () => void;
+  openHistory: () => void;
+  closeHistory: () => void;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -101,6 +112,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       lines: state.lines,
       isCartOpen: state.isCartOpen,
       isCheckoutOpen: state.isCheckoutOpen,
+      isHistoryOpen: state.isHistoryOpen,
       itemCount,
       totals,
       addItem: (item) => dispatch({ type: "ADD_ITEM", item }),
@@ -112,6 +124,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       closeCart: () => dispatch({ type: "CLOSE_CART" }),
       openCheckout: () => dispatch({ type: "OPEN_CHECKOUT" }),
       closeCheckout: () => dispatch({ type: "CLOSE_CHECKOUT" }),
+      openHistory: () => dispatch({ type: "OPEN_HISTORY" }),
+      closeHistory: () => dispatch({ type: "CLOSE_HISTORY" }),
     };
   }, [state]);
 

@@ -33,7 +33,7 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
       </div>
       
       <h3 className="font-display text-2xl sm:text-3xl" style={{ color: "#2C2623" }}>
-        Payment Request Submitted
+        Order Received
       </h3>
       
       <p className="mt-3 max-w-sm font-body text-sm leading-relaxed sm:text-[15px]" style={{ color: "#5E524D" }}>
@@ -90,7 +90,7 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
           className="flex w-full items-center justify-center rounded-full py-3.5 font-body text-[15px] font-semibold text-white transition-all active:scale-[0.98]"
           style={{ backgroundColor: "#C85A32" }}
         >
-          Continue Browsing
+          Browse Menu
         </button>
         <a
           href={whatsappUrl}

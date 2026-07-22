@@ -4,6 +4,7 @@ import { MenuSection } from "@/components/MenuSection";
 import { CateringSection } from "@/components/CateringSection";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
+import { HistoryDrawer } from "@/components/HistoryDrawer";
 import { CheckoutModal } from "@/components/CheckoutModal";
 import { menuItems, CATEGORIES } from "@/data/menuItems";
 
@@ -21,6 +22,7 @@ export default function Home() {
 
       <Footer />
 
+      <HistoryDrawer />
       <CartDrawer />
       <CheckoutModal />
     </main>

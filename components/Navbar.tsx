@@ -2,18 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
+import Link from "next/link";
+import { ShoppingBag, Menu as MenuIcon, X, Clock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = [
-  { label: "Menu", href: "#menu" },
-  { label: "Tiffins", href: "#tiffins" },
-  { label: "Our Story", href: "#story" },
-  { label: "Contact", href: "#footer" },
+  { label: "Menu", href: "/#menu" },
+  { label: "Tiffins", href: "/#tiffins" },
+  { label: "Our Story", href: "/#story" },
+  { label: "Contact", href: "/#footer" },
 ];
 
 export function Navbar() {
-  const { itemCount, openCart } = useCart();
+  const { itemCount, openCart, openHistory } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -55,17 +56,27 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="relative font-body text-[14px] font-medium text-brand-brown-700 transition-colors hover:text-brand-brown-900 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-brand-terracotta after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* History button */}
+          <button
+            onClick={openHistory}
+            aria-label="Recent Orders"
+            className="relative flex items-center justify-center rounded-full bg-brand-cream/50 p-2.5 font-body text-brand-brown-900 transition-all duration-200 hover:bg-brand-terracotta hover:text-white active:scale-95"
+            title="Recent Orders"
+          >
+            <Clock size={20} />
+          </button>
+
           {/* Cart button */}
           <button
             onClick={openCart}
@@ -96,14 +107,14 @@ export function Navbar() {
       {mobileOpen && (
         <nav className="flex flex-col gap-1 border-t border-brand-gold-muted bg-white px-5 py-3 md:hidden">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
               className="rounded-lg px-3 py-2.5 font-body text-[15px] font-medium text-brand-brown-700 transition-colors hover:bg-brand-cream hover:text-brand-brown-900"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       )}

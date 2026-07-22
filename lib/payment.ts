@@ -60,6 +60,18 @@ export async function createOrder(
       createdAt: new Date(data.created_at).getTime(),
     };
 
+    // Save to local storage for Recent Orders feature
+    import("@/lib/order-history").then(({ OrderHistoryService }) => {
+      OrderHistoryService.saveOrder({
+        orderId: newOrder.id,
+        placedAt: newOrder.createdAt,
+        customer: newOrder.customer,
+        items: newOrder.lines,
+        totals: newOrder.totals,
+        status: "Awaiting Confirmation", // Snapshot status
+      });
+    }).catch(err => console.warn("Could not save to order history", err));
+
     return { success: true, order: newOrder };
   } catch (error) {
     console.error("Network Error:", error);
