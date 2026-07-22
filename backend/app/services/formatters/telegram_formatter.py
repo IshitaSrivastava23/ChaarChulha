@@ -71,12 +71,16 @@ class TelegramFormatter:
                 
         clean_phone_for_url = urllib.parse.quote(phone.replace("+", ""))
 
+        # Items formatting for WhatsApp
+        wa_items = "\n".join([f"• {item.quantity} × {item.name}" for item in order.items])
+
         # WhatsApp Message
         wa_message = (
             f"Hi {order.customer_name},\n\n"
             f"Thank you for choosing ChaarChulha! ✨\n\n"
             f"We have received your order (CC{order.id}) and started preparing your meal with care. "
             f"We will update you as soon as it's ready for delivery.\n\n"
+            f"Your order details:\n{wa_items}\n\n"
             f"If you have any special requests or instructions, please let us know here. "
             f"We are more than happy to accommodate them!\n\n"
             f"Warm regards,\nChaarChulha 💖"
