@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = [
-  { label: "Menu", href: "#menu" },
-  { label: "Tiffins", href: "#tiffins" },
-  { label: "Our Story", href: "#story" },
-  { label: "Contact", href: "#footer" },
+  { label: "Menu", href: "/#menu" },
+  { label: "Tiffins", href: "/#tiffins" },
+  { label: "Recent Orders", href: "/recent-orders" },
+  { label: "Our Story", href: "/#story" },
+  { label: "Contact", href: "/#footer" },
 ];
 
 export function Navbar() {
@@ -55,13 +57,13 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="relative font-body text-[14px] font-medium text-brand-brown-700 transition-colors hover:text-brand-brown-900 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-brand-terracotta after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -96,14 +98,14 @@ export function Navbar() {
       {mobileOpen && (
         <nav className="flex flex-col gap-1 border-t border-brand-gold-muted bg-white px-5 py-3 md:hidden">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
               className="rounded-lg px-3 py-2.5 font-body text-[15px] font-medium text-brand-brown-700 transition-colors hover:bg-brand-cream hover:text-brand-brown-900"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       )}
