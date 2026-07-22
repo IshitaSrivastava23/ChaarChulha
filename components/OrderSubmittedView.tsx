@@ -8,6 +8,9 @@ interface OrderSubmittedViewProps {
 }
 
 export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) {
+  const whatsappText = encodeURIComponent(`Hi Chaar Chulha! I have placed my order (#${order.id}). I have a question regarding my order.`);
+  const whatsappUrl = `https://wa.me/917888037948?text=${whatsappText}`;
+
   return (
     <div className="flex flex-col items-center animate-fadeIn px-6 py-8 text-center sm:px-10">
       
@@ -34,7 +37,7 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
       </h3>
       
       <p className="mt-3 max-w-sm font-body text-sm leading-relaxed sm:text-[15px]" style={{ color: "#5E524D" }}>
-        Thank you for choosing Chaar Chulha. We'll manually verify your payment shortly and begin preparing your order.
+        We have received your payment request. Your order is awaiting confirmation. Once confirmed, we will begin preparing your meal.
       </p>
 
       {/* Order Context */}
@@ -55,9 +58,29 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
             Status
           </span>
           <span className="font-body text-sm font-medium" style={{ color: "#C85A32" }}>
-            Pending Verification
+            Awaiting Confirmation
           </span>
         </div>
+      </div>
+
+      {/* What happens next? */}
+      <div className="mt-4 flex w-full flex-col items-start text-left gap-3 rounded-2xl p-4 sm:p-5" style={{ backgroundColor: "#FAFAFA", border: "1px solid #E8E2D5" }}>
+        <h4 className="font-display text-sm font-semibold" style={{ color: "#2C2623" }}>What happens next?</h4>
+        <ul className="flex flex-col gap-2 font-body text-xs sm:text-sm" style={{ color: "#5E524D" }}>
+          
+          <li className="flex items-start gap-2">
+            <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
+            <span>You'll receive a confirmation message once your order is accepted.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
+            <span>We'll start preparing your meal.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span style={{ color: "#C85A32", marginTop: "-1px" }}>•</span> 
+            <span>Feel free to contact us for any questions or special requests.</span>
+          </li>
+        </ul>
       </div>
 
       {/* Actions */}
@@ -69,20 +92,22 @@ export function OrderSubmittedView({ order, onClose }: OrderSubmittedViewProps) 
         >
           Continue Browsing
         </button>
-        <button
-          onClick={onClose}
-          className="flex w-full items-center justify-center rounded-full py-3.5 font-body text-[15px] font-semibold transition-all active:scale-[0.98]"
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center justify-center gap-2 rounded-full py-3.5 font-body text-[15px] font-semibold transition-all active:scale-[0.98]"
           style={{ border: "1px solid #E8E2D5", color: "#2C2623" }}
         >
-          Track Order
-        </button>
+          💬 Connect on WhatsApp
+        </a>
       </div>
 
       {/* Support / Contact */}
-      <div className="mt-8 flex flex-col items-center gap-2">
-        <span className="font-body text-xs" style={{ color: "#877872" }}>
-          Need Help?
-        </span>
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <p className="font-body text-xs text-center max-w-[240px] leading-relaxed" style={{ color: "#877872" }}>
+          Need assistance or have a special request? We're happy to help. Reach out anytime.
+        </p>
         <div className="flex gap-5">
           <a
             href="tel:+917888037948"

@@ -2,6 +2,7 @@ import httpx
 from app.core.config import settings
 from app.core.logger import logger
 from app.schemas.order import OrderResponse
+from app.services.formatters.telegram_formatter import TelegramFormatter
 
 class TelegramNotificationService:
     def __init__(self):
@@ -14,11 +15,13 @@ class TelegramNotificationService:
             logger.info("Telegram notification skipped: Credentials not configured.")
             return
 
-        message = self._format_message(order)
+        payload_data = TelegramFormatter.format_message(order)
+        
         payload = {
             "chat_id": self.chat_id,
-            "text": message
-            # Removed parse_mode MarkdownV2 to ensure absolute reliability without escaping fragility
+            "text": payload_data["text"],
+            "reply_markup": payload_data["reply_markup"]
+            # No parse_mode to ensure absolute reliability without escaping fragility
         }
 
         try:
@@ -28,16 +31,3 @@ class TelegramNotificationService:
                 logger.info(f"Successfully sent notification for order {order.id}")
         except Exception as e:
             logger.error(f"Failed to send notification for order {order.id}: {str(e)}", exc_info=True)
-
-    def _format_message(self, order: OrderResponse) -> str:
-        items_str = "\n".join([f"- {item.quantity}x {item.name}" for item in order.items])
-        
-        return (
-            f"🔔 NEW ORDER RECEIVED 🍔\n\n"
-            f"Order ID: CC{order.id}\n"
-            f"Customer: {order.customer_name}\n"
-            f"Phone: {order.phone}\n\n"
-            f"Items:\n{items_str}\n\n"
-            f"Total Amount: ₹{order.total_amount}\n"
-            f"Address: {order.address}\n"
-        )

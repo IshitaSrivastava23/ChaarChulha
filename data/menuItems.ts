@@ -12,7 +12,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 60,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Samosa.png",
     isPure: true,
   },
   {
@@ -21,7 +21,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 50,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Wada Pav.png",
     isPure: true,
   },
   {
@@ -30,7 +30,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 70,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Moong Dal Kachori.png",
     isPure: true,
   },
   {
@@ -39,7 +39,7 @@ export const menuItems: MenuItem[] = [
     description: "4 pcs",
     price: 70,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Bread Roll.png",
     isPure: true,
   },
   {
@@ -48,7 +48,7 @@ export const menuItems: MenuItem[] = [
     description: "4 pcs",
     price: 90,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Corn Cheese Ball.png",
     isPure: true,
   },
   {
@@ -57,7 +57,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 60,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Plain Maggi.png",
     isPure: true,
   },
   {
@@ -66,7 +66,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 80,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Masala Maggi.png",
     isPure: true,
   },
   {
@@ -75,7 +75,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 90,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Veg Loaded Nachos.png",
     isPure: true,
   },
   {
@@ -84,7 +84,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 90,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/French Fries.png",
     isPure: true,
   },
   {
@@ -93,7 +93,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 80,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/veg Frankie.png",
     isPure: true,
   },
   {
@@ -102,7 +102,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 90,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Paneer Roll.png",
     isPure: true,
   },
   {
@@ -111,7 +111,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 100,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Egg Roll.png",
     isPure: true,
   },
   {
@@ -120,7 +120,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 50,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Bun Maska.png",
     isPure: true,
   },
   {
@@ -129,7 +129,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 200,
     category: "Starters",
-    imageURL: "",
+    imageURL: "/images/Veg Hakka Noodles.jpg",
     isPure: true,
   },
 
@@ -144,7 +144,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 80,
     category: "Sandwiches, Burgers & Wraps",
-    imageURL: "",
+    imageURL: "/images/Veg Grilled Sandwich.jpg",
     isPure: true,
   },
   {
@@ -153,7 +153,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 90,
     category: "Sandwiches, Burgers & Wraps",
-    imageURL: "",
+    imageURL: "/images/Paneer Tikka Sandwich.jpg",
     isPure: true,
   },
   {
@@ -162,7 +162,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 100,
     category: "Sandwiches, Burgers & Wraps",
-    imageURL: "",
+    imageURL: "/images/Bombay Grilled Sandwich.jpg",
     isPure: true,
   },
   {
@@ -171,7 +171,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 90,
     category: "Sandwiches, Burgers & Wraps",
-    imageURL: "",
+    imageURL: "/images/Veg Burger.jpg",
     isPure: true,
   },
   {
@@ -180,7 +180,7 @@ export const menuItems: MenuItem[] = [
     description: "",
     price: 100,
     category: "Sandwiches, Burgers & Wraps",
-    imageURL: "",
+    imageURL: "/images/Paneer Burger.jpg",
     isPure: true,
   },
 
@@ -195,7 +195,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 120,
     category: "Paratha Gali",
-    imageURL: "",
+    imageURL: "/images/Gobhi Paratha.jpg",
     isPure: true,
   },
   {
@@ -204,7 +204,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 120,
     category: "Paratha Gali",
-    imageURL: "",
+    imageURL: "/images/Aloo Paratha.jpg",
     isPure: true,
   },
   {
@@ -213,7 +213,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 140,
     category: "Paratha Gali",
-    imageURL: "",
+    imageURL: "/images/Mix Veg Paratha.jpg",
     isPure: true,
   },
   {
@@ -222,7 +222,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 160,
     category: "Paratha Gali",
-    imageURL: "",
+    imageURL: "/images/Paneer Paratha.jpg",
     isPure: true,
   },
   {
@@ -246,7 +246,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 190,
     category: "Main Course",
-    imageURL: "",
+    imageURL: "/images/Rajma.jpg",
     isPure: true,
   },
   {
@@ -255,7 +255,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 190,
     category: "Main Course",
-    imageURL: "",
+    imageURL: "/images/Chole.jpg",
     isPure: true,
   },
   {
@@ -264,7 +264,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 160,
     category: "Main Course",
-    imageURL: "",
+    imageURL: "/images/Aloo Jeera.jpg",
     isPure: true,
   },
   {
@@ -273,7 +273,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 180,
     category: "Main Course",
-    imageURL: "",
+    imageURL: "/images/Aloo Gobhi.jpg",
     isPure: true,
   },
   {
@@ -282,7 +282,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 180,
     category: "Main Course",
-    imageURL: "",
+    imageURL: "/images/Bhindi Masala.jpg",
     isPure: true,
   },
   {
@@ -306,7 +306,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 110,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Rajma Chawal.jpg",
     isPure: true,
   },
   {
@@ -315,7 +315,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 110,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Chole Chawal.jpg",
     isPure: true,
   },
   {
@@ -324,7 +324,7 @@ export const menuItems: MenuItem[] = [
     description: "Plate",
     price: 110,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Kadhi chawal.jpg",
     isPure: true,
   },
   {
@@ -333,7 +333,7 @@ export const menuItems: MenuItem[] = [
     description: "4 pcs",
     price: 110,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Puri Sabji.jpg",
     isPure: true,
   },
   {
@@ -342,7 +342,7 @@ export const menuItems: MenuItem[] = [
     description: "2 pcs",
     price: 120,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Chole Bhature.jpg",
     isPure: true,
   },
   {
@@ -351,7 +351,7 @@ export const menuItems: MenuItem[] = [
     description: "4 pcs",
     price: 110,
     category: "Chaar Chulha Sangam",
-    imageURL: "",
+    imageURL: "/images/Pav Bhaaji.jpg",
     isPure: true,
   },
 
@@ -366,7 +366,7 @@ export const menuItems: MenuItem[] = [
     description: "4 Phulka + Dal + Rice + Sabji + Salad",
     price: 165,
     category: "Thalis",
-    imageURL: "",
+    imageURL: "/images/Annapurna Thali.jpg",
     isPure: true,
   },
   {
@@ -375,7 +375,7 @@ export const menuItems: MenuItem[] = [
     description: "4 Phulka + Dal + Rice + Seasonal Sabji + Paneer Ki Sabji + Salad",
     price: 199,
     category: "Thalis",
-    imageURL: "",
+    imageURL: "/images/Royal Annapurna Thali.jpg",
     isPure: true,
   },
   {
@@ -398,4 +398,4 @@ export const menuItems: MenuItem[] = [
 
 ];
 
-export const CATEGORIES: MenuItem["category"][] = ["Starters", "Sandwiches, Burgers & Wraps", "Paratha Gali", "Chaar Chulha Sangam", "Main Course", "Thalis", "Tiffins"];
+export const CATEGORIES: MenuItem["category"][] = ["Starters", "Sandwiches, Burgers & Wraps", "Paratha Gali", "Chaar Chulha Sangam", "Main Course", "Thalis", "Tiffins"];
