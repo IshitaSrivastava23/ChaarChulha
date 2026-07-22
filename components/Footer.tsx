@@ -70,7 +70,7 @@ export function Footer() {
           <ul className="mt-4 flex flex-col gap-2.5 font-body text-sm text-brand-cream/70">
             <li><a href="#menu" className="transition-colors hover:text-white">Full Menu</a></li>
             <li><a href="#tiffins" className="transition-colors hover:text-white">Tiffin Subscriptions</a></li>
-            <li><a href="#story" className="transition-colors hover:text-white">Our Story</a></li>
+
             <li><a href="#top" className="transition-colors hover:text-white">Back to Top</a></li>
           </ul>
         </div>
