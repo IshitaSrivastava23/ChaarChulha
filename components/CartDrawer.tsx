@@ -198,10 +198,7 @@ export function CartDrawer() {
                   <span>Subtotal</span>
                   <span>{formatINR(totals.subtotal)}</span>
                 </div>
-                <div className="flex justify-between" style={{ color: "#5E524D" }}>
-                  <span>GST (5%)</span>
-                  <span>{formatINR(totals.tax)}</span>
-                </div>
+
                 <div className="flex justify-between" style={{ color: "#5E524D" }}>
                   <span>Delivery</span>
                   <span style={{ color: totals.deliveryFee === 0 ? "#657049" : "#5E524D", fontWeight: totals.deliveryFee === 0 ? 600 : 400 }}>
