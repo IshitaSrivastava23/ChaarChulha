@@ -10,11 +10,13 @@ import { OrderHistoryCard } from "@/components/ui/OrderHistoryCard";
 export function HistoryDrawer() {
   const { isHistoryOpen, closeHistory } = useCart();
   const [orders, setOrders] = useState<HistoricalOrder[]>([]);
+  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
 
   // Only read from localStorage when the drawer opens
   useEffect(() => {
     if (isHistoryOpen) {
       setOrders(OrderHistoryService.getRecentOrders());
+      setExpandedOrderId(null);
     }
   }, [isHistoryOpen]);
 
@@ -32,8 +34,8 @@ export function HistoryDrawer() {
 
       {/* ── Drawer panel ── */}
       <div
-        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col"
-        style={{ backgroundColor: "#F9F6F0", boxShadow: "-4px 0 40px rgba(44, 38, 35, 0.15)" }}
+        className="fixed inset-x-0 bottom-0 z-50 flex h-[85vh] w-full flex-col rounded-t-3xl md:inset-x-auto md:inset-y-0 md:right-0 md:h-full md:max-w-md md:rounded-none"
+        style={{ backgroundColor: "#F9F6F0", boxShadow: "0 -4px 40px rgba(44, 38, 35, 0.15)" }}
         role="dialog"
         aria-modal="true"
         aria-label="Recent Orders History"
@@ -93,7 +95,12 @@ export function HistoryDrawer() {
         ) : (
           <div className="flex-1 overflow-y-auto px-5 py-5 flex flex-col gap-5">
             {orders.map((order, idx) => (
-              <OrderHistoryCard key={`${order.orderId}-${idx}`} order={order} />
+              <OrderHistoryCard 
+                key={`${order.orderId}-${idx}`} 
+                order={order}
+                isExpanded={expandedOrderId === order.orderId}
+                onToggle={() => setExpandedOrderId(expandedOrderId === order.orderId ? null : order.orderId)}
+              />
             ))}
           </div>
         )}

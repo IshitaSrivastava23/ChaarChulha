@@ -24,8 +24,8 @@ export function CartDrawer() {
 
       {/* ── Drawer panel — always opaque white ── */}
       <div
-        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col"
-        style={{ backgroundColor: "#FFFFFF", boxShadow: "-4px 0 40px rgba(44, 38, 35, 0.15)" }}
+        className="fixed inset-x-0 bottom-0 z-50 flex h-[85vh] w-full flex-col rounded-t-3xl md:inset-x-auto md:inset-y-0 md:right-0 md:h-full md:max-w-md md:rounded-none"
+        style={{ backgroundColor: "#FFFFFF", boxShadow: "0 -4px 40px rgba(44, 38, 35, 0.15)" }}
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
@@ -198,10 +198,7 @@ export function CartDrawer() {
                   <span>Subtotal</span>
                   <span>{formatINR(totals.subtotal)}</span>
                 </div>
-                <div className="flex justify-between" style={{ color: "#5E524D" }}>
-                  <span>GST (5%)</span>
-                  <span>{formatINR(totals.tax)}</span>
-                </div>
+
                 <div className="flex justify-between" style={{ color: "#5E524D" }}>
                   <span>Delivery</span>
                   <span style={{ color: totals.deliveryFee === 0 ? "#657049" : "#5E524D", fontWeight: totals.deliveryFee === 0 ? 600 : 400 }}>

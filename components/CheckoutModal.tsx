@@ -132,7 +132,7 @@ export function CheckoutModal() {
                 onCancel={() => setPaymentState("idle")}
               />
             ) : (
-              <div className="px-6 py-5" style={{ backgroundColor: "#FFFFFF" }}>
+              <div className="px-4 py-5 sm:px-6" style={{ backgroundColor: "#FFFFFF" }}>
 
                 {/* Delivery notice */}
                 <div
@@ -196,10 +196,7 @@ export function CheckoutModal() {
                     <span>Subtotal</span>
                     <span>{formatINR(totals.subtotal)}</span>
                   </div>
-                  <div className="flex justify-between" style={{ color: "#5E524D" }}>
-                    <span>GST (5%)</span>
-                    <span>{formatINR(totals.tax)}</span>
-                  </div>
+
                   <div className="flex justify-between" style={{ color: "#5E524D" }}>
                     <span>Delivery</span>
                     <span style={{ color: totals.deliveryFee === 0 ? "#657049" : "#5E524D", fontWeight: totals.deliveryFee === 0 ? 600 : 400 }}>
@@ -233,7 +230,7 @@ export function CheckoutModal() {
                 )}
 
                 {/* CTAs */}
-                <div className="mt-5 flex flex-col gap-3 pb-2">
+                <div className="mt-5 flex flex-col gap-3 pb-6 sm:pb-2">
                   <button
                     onClick={onPayOnline}
                     disabled={!isFormValid || paymentState === "creating_order"}

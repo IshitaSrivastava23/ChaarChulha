@@ -15,9 +15,9 @@ export function calculateSubtotal(lines: CartLine[]): number {
 
 export function calculateTotals(lines: CartLine[]): OrderTotals {
   const subtotal = calculateSubtotal(lines);
-  const tax = Math.round(subtotal * GST_RATE);
+  const tax = 0; // GST removed per user request
   const deliveryFee = subtotal === 0 || subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : BASE_DELIVERY_FEE;
-  const grandTotal = subtotal + tax + deliveryFee;
+  const grandTotal = subtotal + deliveryFee;
 
   return { subtotal, tax, deliveryFee, grandTotal };
 }

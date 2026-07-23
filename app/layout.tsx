@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${inter.variable}`}
     >
-      <body className="font-body bg-chaar-cream text-chaar-black antialiased">
+      <body className="font-body bg-chaar-cream text-chaar-black antialiased overflow-x-hidden">
         {/* CartProvider wraps the whole app so any component
             can access the shopping cart without prop drilling. */}
         <CartProvider>{children}</CartProvider>
