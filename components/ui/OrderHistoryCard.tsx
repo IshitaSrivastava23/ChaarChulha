@@ -1,17 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp, RotateCw } from "lucide-react";
 import { HistoricalOrder } from "@/lib/order-history";
 import { useCart } from "@/context/CartContext";
 
 interface OrderHistoryCardProps {
   order: HistoricalOrder;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 }
 
-export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
-  const [expanded, setExpanded] = useState(false);
+export function OrderHistoryCard({ order, isExpanded = false, onToggle }: OrderHistoryCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const { clearCart, addItem, openCart, closeHistory } = useCart();
+
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      setTimeout(() => {
+        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 100);
+    }
+  }, [isExpanded]);
 
   const handleReorder = () => {
     clearCart();
@@ -57,13 +67,14 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
 
   return (
     <div 
-      className="flex w-full flex-col overflow-hidden rounded-2xl transition-all"
+      ref={cardRef}
+      className="flex w-full shrink-0 flex-col overflow-hidden rounded-2xl transition-all"
       style={{ backgroundColor: "#FFFFFF", border: "1px solid #E8E2D5", boxShadow: "0 2px 8px rgba(44, 38, 35, 0.02)" }}
     >
       {/* Header Summary (Always Visible) */}
       <div 
         className="flex cursor-pointer flex-col p-5 sm:p-6"
-        onClick={() => setExpanded(!expanded)}
+        onClick={onToggle}
       >
         <div className="mb-4 flex items-start justify-between">
           <div>
@@ -104,17 +115,17 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <span className="font-body text-xs font-medium" style={{ color: "#877872" }}>
-              {expanded ? "Hide Details" : "View Details"}
+              {isExpanded ? "Hide Details" : "View Details"}
             </span>
-            {expanded ? <ChevronUp size={16} color="#877872" /> : <ChevronDown size={16} color="#877872" />}
+            {isExpanded ? <ChevronUp size={16} color="#877872" /> : <ChevronDown size={16} color="#877872" />}
           </div>
         </div>
       </div>
 
       {/* Expanded Details */}
       <div 
-        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-        style={{ backgroundColor: "#FAFAFA", borderTop: expanded ? "1px solid #E8E2D5" : "none" }}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+        style={{ backgroundColor: "#FAFAFA", borderTop: isExpanded ? "1px solid #E8E2D5" : "none" }}
       >
         <div className="overflow-hidden">
           <div className="p-5 sm:p-6">

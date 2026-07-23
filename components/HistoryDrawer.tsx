@@ -10,11 +10,13 @@ import { OrderHistoryCard } from "@/components/ui/OrderHistoryCard";
 export function HistoryDrawer() {
   const { isHistoryOpen, closeHistory } = useCart();
   const [orders, setOrders] = useState<HistoricalOrder[]>([]);
+  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
 
   // Only read from localStorage when the drawer opens
   useEffect(() => {
     if (isHistoryOpen) {
       setOrders(OrderHistoryService.getRecentOrders());
+      setExpandedOrderId(null);
     }
   }, [isHistoryOpen]);
 
@@ -93,7 +95,12 @@ export function HistoryDrawer() {
         ) : (
           <div className="flex-1 overflow-y-auto px-5 py-5 flex flex-col gap-5">
             {orders.map((order, idx) => (
-              <OrderHistoryCard key={`${order.orderId}-${idx}`} order={order} />
+              <OrderHistoryCard 
+                key={`${order.orderId}-${idx}`} 
+                order={order}
+                isExpanded={expandedOrderId === order.orderId}
+                onToggle={() => setExpandedOrderId(expandedOrderId === order.orderId ? null : order.orderId)}
+              />
             ))}
           </div>
         )}
