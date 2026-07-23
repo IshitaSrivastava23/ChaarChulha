@@ -113,7 +113,7 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
 
       {/* Expanded Details */}
       <div 
-        className={`flex flex-col transition-all duration-300 ${expanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
+        className={`flex flex-col transition-all duration-500 overflow-hidden ${expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
         style={{ backgroundColor: "#FAFAFA", borderTop: expanded ? "1px solid #E8E2D5" : "none" }}
       >
         <div className="p-5 sm:p-6">
