@@ -30,16 +30,29 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
     openCart();
   };
 
-  const dateStr = new Date(order.placedAt).toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric"
-  });
+  const orderDate = new Date(order.placedAt);
+  const now = new Date();
   
-  const timeStr = new Date(order.placedAt).toLocaleTimeString("en-IN", {
+  const isToday = orderDate.getDate() === now.getDate() &&
+    orderDate.getMonth() === now.getMonth() &&
+    orderDate.getFullYear() === now.getFullYear();
+    
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  const isYesterday = orderDate.getDate() === yesterday.getDate() &&
+    orderDate.getMonth() === yesterday.getMonth() &&
+    orderDate.getFullYear() === yesterday.getFullYear();
+
+  const timeStr = orderDate.toLocaleTimeString("en-IN", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true
+  });
+
+  const dateStr = isToday ? "Today" : isYesterday ? "Yesterday" : orderDate.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
   });
 
   return (

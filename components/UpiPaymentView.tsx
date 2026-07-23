@@ -99,7 +99,7 @@ export function UpiPaymentView({
             <img
               src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUri)}`}
               alt="UPI Payment QR Code"
-              className="h-32 w-32 object-contain"
+              className="h-32 w-32 max-w-full object-contain"
             />
           </div>
         </div>
@@ -135,7 +135,7 @@ export function UpiPaymentView({
           <span className="font-body text-[11px] font-semibold uppercase tracking-wider" style={{ color: "#877872" }}>
             UPI ID
           </span>
-          <span className="font-body text-sm font-medium" style={{ color: "#2C2623" }}>
+          <span className="font-body text-sm font-medium break-all" style={{ color: "#2C2623" }}>
             {upiId}
           </span>
         </div>

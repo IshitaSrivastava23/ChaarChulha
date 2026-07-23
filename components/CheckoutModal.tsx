@@ -132,7 +132,7 @@ export function CheckoutModal() {
                 onCancel={() => setPaymentState("idle")}
               />
             ) : (
-              <div className="px-6 py-5" style={{ backgroundColor: "#FFFFFF" }}>
+              <div className="px-4 py-5 sm:px-6" style={{ backgroundColor: "#FFFFFF" }}>
 
                 {/* Delivery notice */}
                 <div
@@ -233,7 +233,7 @@ export function CheckoutModal() {
                 )}
 
                 {/* CTAs */}
-                <div className="mt-5 flex flex-col gap-3 pb-2">
+                <div className="mt-5 flex flex-col gap-3 pb-6 sm:pb-2">
                   <button
                     onClick={onPayOnline}
                     disabled={!isFormValid || paymentState === "creating_order"}
