@@ -28,11 +28,9 @@ class TelegramFormatter:
         # Time formatting (IST with Date)
         if order.created_at:
             try:
-                from zoneinfo import ZoneInfo
-                from datetime import timezone
-                # Ensure it's an aware datetime in UTC before converting
-                dt_utc = order.created_at.replace(tzinfo=timezone.utc) if order.created_at.tzinfo is None else order.created_at
-                dt_ist = dt_utc.astimezone(ZoneInfo("Asia/Kolkata"))
+                from datetime import timedelta
+                # Add 5 hours and 30 minutes to UTC to get IST
+                dt_ist = order.created_at + timedelta(hours=5, minutes=30)
                 time_str = dt_ist.strftime("%d %b %Y, %I:%M %p")
             except Exception:
                 # Fallback just in case
