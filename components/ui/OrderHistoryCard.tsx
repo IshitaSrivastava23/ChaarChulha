@@ -113,55 +113,57 @@ export function OrderHistoryCard({ order }: OrderHistoryCardProps) {
 
       {/* Expanded Details */}
       <div 
-        className={`flex flex-col transition-all duration-500 overflow-hidden ${expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
         style={{ backgroundColor: "#FAFAFA", borderTop: expanded ? "1px solid #E8E2D5" : "none" }}
       >
-        <div className="p-5 sm:p-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            
-            {/* Customer Details */}
-            <div className="flex flex-col gap-3">
-              <div>
-                <span className="font-body text-[10px] uppercase tracking-wider" style={{ color: "#877872" }}>Deliver To</span>
-                <p className="font-body text-sm font-medium" style={{ color: "#2C2623" }}>{order.customer.name}</p>
-                <p className="mt-0.5 font-body text-xs leading-relaxed" style={{ color: "#5E524D" }}>{order.customer.address}</p>
+        <div className="overflow-hidden">
+          <div className="p-5 sm:p-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              
+              {/* Customer Details */}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <span className="font-body text-[10px] uppercase tracking-wider" style={{ color: "#877872" }}>Deliver To</span>
+                  <p className="font-body text-sm font-medium" style={{ color: "#2C2623" }}>{order.customer.name}</p>
+                  <p className="mt-0.5 font-body text-xs leading-relaxed break-words" style={{ color: "#5E524D" }}>{order.customer.address}</p>
+                </div>
+                
+                {order.customer.notes && (
+                  <div>
+                    <span className="font-body text-[10px] uppercase tracking-wider" style={{ color: "#877872" }}>Instructions</span>
+                    <p className="font-body text-xs italic" style={{ color: "#5E524D" }}>"{order.customer.notes}"</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Billing Breakdown */}
+              <div className="flex flex-col gap-2 rounded-xl p-4" style={{ backgroundColor: "#FFFFFF", border: "1px solid #E8E2D5" }}>
+                <div className="flex justify-between font-body text-xs" style={{ color: "#5E524D" }}>
+                  <span>Subtotal</span>
+                  <span>₹{order.totals.subtotal}</span>
+                </div>
+                <div className="flex justify-between font-body text-xs" style={{ color: "#5E524D" }}>
+                  <span>Delivery Charge</span>
+                  <span>₹{order.totals.deliveryFee}</span>
+                </div>
+                <div className="my-1 border-t" style={{ borderColor: "#F5F2EC" }} />
+                <div className="flex justify-between font-body text-sm font-bold" style={{ color: "#2C2623" }}>
+                  <span>Grand Total</span>
+                  <span>₹{order.totals.grandTotal}</span>
+                </div>
               </div>
               
-              {order.customer.notes && (
-                <div>
-                  <span className="font-body text-[10px] uppercase tracking-wider" style={{ color: "#877872" }}>Instructions</span>
-                  <p className="font-body text-xs italic" style={{ color: "#5E524D" }}>"{order.customer.notes}"</p>
-                </div>
-              )}
             </div>
 
-            {/* Billing Breakdown */}
-            <div className="flex flex-col gap-2 rounded-xl p-4" style={{ backgroundColor: "#FFFFFF", border: "1px solid #E8E2D5" }}>
-              <div className="flex justify-between font-body text-xs" style={{ color: "#5E524D" }}>
-                <span>Subtotal</span>
-                <span>₹{order.totals.subtotal}</span>
-              </div>
-              <div className="flex justify-between font-body text-xs" style={{ color: "#5E524D" }}>
-                <span>Delivery Charge</span>
-                <span>₹{order.totals.deliveryFee}</span>
-              </div>
-              <div className="my-1 border-t" style={{ borderColor: "#F5F2EC" }} />
-              <div className="flex justify-between font-body text-sm font-bold" style={{ color: "#2C2623" }}>
-                <span>Grand Total</span>
-                <span>₹{order.totals.grandTotal}</span>
-              </div>
-            </div>
-            
+            <button
+              onClick={handleReorder}
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
+              style={{ backgroundColor: "#2C2623", color: "#FFFFFF" }}
+            >
+              <RotateCw size={16} />
+              Reorder These Items
+            </button>
           </div>
-
-          <button
-            onClick={handleReorder}
-            className="mt-6 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
-            style={{ backgroundColor: "#2C2623", color: "#FFFFFF" }}
-          >
-            <RotateCw size={16} />
-            Reorder These Items
-          </button>
         </div>
       </div>
 
