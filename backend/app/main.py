@@ -18,8 +18,10 @@ app.add_middleware(
     allow_origins=[
     "http://localhost:3000",
     "https://chaar-chulha.vercel.app",
+    "https://chaar-chulha-6g6jqqr9u-ishita-srivastavas-projects-e49534e2.vercel.app",
     "https://chaarchulha.com",
     "https://www.chaarchulha.com",],  # React frontend
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
