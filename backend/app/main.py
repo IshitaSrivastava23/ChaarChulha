@@ -13,18 +13,20 @@ app = FastAPI(
 )
 
 # Configure CORS for the frontend
+# 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    "http://localhost:3000",
-    "https://chaar-chulha.vercel.app",
-    "https://chaar-chulha-6g6jqqr9u-ishita-srivastavas-projects-e49534e2.vercel.app",
-    "https://chaarchulha.com",
-    "https://www.chaarchulha.com",],  # React frontend
+        "http://localhost:3000",
+        "https://chaar-chulha.vercel.app",
+        "https://chaarchulha.com",
+        "https://www.chaarchulha.com",
+    ],
     allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["POST", "GET", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 @app.exception_handler(AppError)
@@ -50,5 +52,9 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": "Internal server error"}
     )
+
+@app.get("/version")
+async def version():
+    return {"cors": "updated"}
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
